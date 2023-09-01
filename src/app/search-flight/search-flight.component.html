@@ -1,0 +1,63 @@
+<h2 style="text-align:center; margin-top: 25px;color: beige; font-weight: bold;font-size:35px;">FLY8 BUDDY</h2>
+<div *ngIf="!showCustomerComponent" class="container" style="display: flex; justify-content: flex-end; margin-top: 20px;">
+    <div class="panel panel-primary" style="width: 550px; height: 350px; margin-top: 20px;">
+      <div class="panel-heading" style="font-size: medium;">FLIGHT BOOKING</div>
+      <div *ngIf="selectedFlight==undefined" class="panel-body">
+        <form #searchForm (ngSubmit)="onSearchFlights(fromcity,tocity,dod)">
+        <div class="col-md-5"> 
+            <label for="fromcity">FLYING FROM</label>
+            <select class="form-select" name="fromcity" id="fromcity" [(ngModel)]="fromcity" required>
+                <option value="DEL">Delhi</option>
+                <option value="MUM">Mumbai</option>
+                <option value="CHN">Chennai</option>
+                <option value="KOL">Kolkatta</option>
+            </select>
+        </div>
+        <div class="col-md-5">
+            <label for="tocity">FLYING TO</label>
+            <select class="form-select" name="tocity" id="tocity" [(ngModel)]="tocity" required>
+                <option value="LON">London</option>
+                <option value="CHI">Chicago</option>
+                <option value="SIN">Singapore</option>
+                <option value="MAL">Malayasia</option>
+            </select>
+        </div>
+        <div class="col-md-5" style="margin-top: 25px;">
+            <label for="dod">DEPARTING</label>
+            <input type="date" name="dod" id="dod" [(ngModel)]="dod" required>
+        </div>
+       
+    <div class="col-md-4" style="margin-top: 25px;">
+        <button class="btn-sm btn-primary">SHOW FLIGHTS</button>
+    </div>
+    </form>
+</div>
+<div *ngIf="showFlightResults" class="container">
+    <div  class="row col-md-12" style="margin-top: 25px;">
+        <p *ngIf="flightResults.length == 0" style="font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; color: red; font-size: medium;">
+            No Flights Found
+        </p>
+        <table class="table table-bordered" *ngIf="flightResults.length>0">
+            <th>From</th>
+            <th>To</th>
+            <th>Date of Journey</th>
+            <th>Airline</th>
+            <th>Base Price</th>
+            <tr *ngFor="let res of flightResults" class="table table-info">
+                <td>{{res.fromcity}}</td>
+                <td>{{res.tocity}}</td>
+                <td>{{res.departure_date}}</td>
+                <td>{{res.airline}}</td>
+                <td>{{res.price | currency}}</td>
+                <td><button class="btn-sm btn-primary" (click)="getSelctedFlight(res)">Book now</button></td>
+                
+            </tr>
+        </table>
+        
+    </div>
+  </div>
+</div>
+</div>
+<div *ngIf="showCustomerComponent">
+    <app-customer-detail [selectedFlightDet]="selectedFlight"></app-customer-detail>
+</div>

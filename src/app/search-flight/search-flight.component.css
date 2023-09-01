@@ -1,0 +1,28 @@
+select{
+   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+   font-size: small; 
+}
+option{
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: small;  
+}
+label {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+   font-size: small; 
+}
+
+th{
+   font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+   font-size: small;
+   color:#0000ff;
+   font-weight: bold;
+}
+td{
+   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+   font-size: small;
+   color: brown
+}
+#dod{
+   font-family: Arial, Helvetica, sans-serif;
+  font-size: small; 
+}

@@ -1,0 +1,91 @@
+<div *ngIf="!showViewPage && !showConfirmationMsg" class="container" style="display: flex; justify-content: flex-end; margin-top: 20px;">
+    <div class="panel panel-primary" style="width: 550px; height: 350px; margin-top: 20px;">
+      <div class="panel-heading" style="font-size: medium;">FLIGHT BOOKING</div>
+      <div class="panel-body">
+        <form>
+            <h3>Fill Customer Details</h3>
+            <div class="col-md-5" style="margin-top: 25px;">   
+                <label for="firstperson">First Person</label>
+                <input type="text" name="fperson" id="fperson" class="form-control" [(ngModel)]="fperson">
+            </div>
+            <div class="col-md-5" style="margin-top: 25px;">   
+                <label for="secondperson">Second Person</label>
+                <input type="text" name="sperson" id="sperson"  class="form-control" [(ngModel)]="sperson">
+            </div>
+            <div class="col-md-5" style="margin-top: 25px;">   
+                <label for="firstchild">First Child</label>
+                <input type="text" name="fchild" id="fchild" class="form-control" [(ngModel)]="fchild">
+            </div>
+            <div class="col-md-5" style="margin-top: 25px;">   
+                <label for="class">Class</label>
+                <select class="form-select" name="aclass" id="aclasss" [(ngModel)]="aclass">
+                    <option value="ECO">Economy</option>
+                    <option value="BC">Business Class</option>
+                </select>
+            </div>
+            <div style="margin-top: 25px;">
+                <div class="col-md-3" style="margin-top: 25px;align-self:center">
+                    <button class="btn-sm btn-success" (click)=onSubmitCustomerDetails(fperson,sperson,fchild,aclass)>SUBMIT</button>
+                </div>
+                <div class="col-md-3" style="margin-top: 25px;">
+                    <button class="btn-sm btn-danger" (click)="resetForm()">RESET</button>
+                </div>
+            </div>           
+        </form>
+    </div>
+</div>
+</div>
+    
+<div *ngIf="showViewPage && !showConfirmationMsg" class="container" style="display: flex; justify-content: flex-end; margin-top: 20px;">
+   <div class="panel panel-primary" style="width: 600px; height: 550px; margin-top: 20px;">
+      <div class="panel-heading" style="font-size: medium;">FLIGHT BOOKING</div>
+      <div class="panel-body">
+            <div class="col-md-10"  #content>
+                <h3><u>Plane Ticket Purchase</u></h3>
+                <p>PNR Number - RYTGBD234</p>
+                <p>Booking date - {{currentDate | date:'dd-MM-yyyy'}}</p>
+                <h3>Guest Name</h3>
+                <p>First Person - {{fperson}} Second Person - {{sperson}} First Child - {{fchild}}</p>
+                <hr>
+                <h3>Flight Details</h3>
+                <table class="table table-bordered">
+                    <th>From</th>
+                    <th>To</th>
+                    <th>Date of Journey</th>
+                    <th>Airline</th>
+                    <th>Travel Classs</th>
+                    <tr class="table table-info">
+                        <td>{{selectedFlightDet.fromcity}}</td>
+                        <td>{{selectedFlightDet.tocity}}</td>
+                        <td>{{selectedFlightDet.departure_date}}</td>
+                        <td>{{selectedFlightDet.airline}}</td>
+                        <td>{{aclass}}</td>
+                        
+                    </tr>
+                </table>
+                <hr>
+                <h3>Fare Breakdown</h3>
+                <p>Base Fare: {{selectedFlightDet.price | currency}}</p>
+                <p>Service Charge :  {{serviceCharge | currency}}</p>
+                <p>Insurance/Fuel :  {{insCharge | currency}}</p>
+                <hr>
+                <p>Total : {{total | currency}}</p>
+            </div>
+                <div class="class=col-md-3" style="margin-top: 25px;">
+                    <button class="btn-sm btn-success" (click)="downloadTicket()">Download Ticket</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="showConfirmationMsg" class="container" style="display: flex; justify-content: flex-end; margin-top: 20px;">
+    <div class="panel panel-primary" style="width: 600px; height: 350px; margin-top: 20px;">
+      <div class="panel-heading" style="font-size: medium;">FLIGHT BOOKING</div>
+      <div class="panel-body">
+        <div *ngIf="showConfirmationMsg" class="col-md-10"> 
+            <h4>Your ticket has been booked successfully</h4> 
+        <button class="btn-sm btn-success" (click)="viewTicketDetails()">View Ticket</button>
+        </div>
+    </div>
+    </div>
+</div>
